@@ -7,6 +7,8 @@ import com.example.registrationlogindemo.repository.RecipeRepository;
 import com.example.registrationlogindemo.service.RecipeService;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +33,12 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.save(recipe);
     }
     @Override
-    public Recipe findByName(String name) {
+    public Recipe findByName(String name, Pageable pageable) {
         return recipeRepository.findByName(name);
     }
+
+
+
 
     @Override
     public List<RecipeDto> findAllRecipes() {
