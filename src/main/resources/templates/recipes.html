@@ -4,7 +4,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Registration and Login System</title>
+    <title>My Recipe App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Registration and Login System</a>
+        <a class="navbar-brand" th:href="@{/recipes}">My Recipe App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,6 +38,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>View</th>
         </tr>
         </thead>
         <tbody>
@@ -45,19 +46,20 @@
             <td th:text="${currentUser.firstName}"></td>
             <td th:text="${currentUser.lastName}"></td>
             <td th:text="${currentUser.email}"></td>
+            <td> <a th:href="@{'/userProfile/' + ${currentUser.id}}" class="btn btn-primary">View</a></td>
         </tr>
         </tbody>
     </table>
     </div>
 
-
+<div class="container">
     <label>Search recipe name:</label>
     <form class="form" th:action="@{recipes/search}">
         <input id="name" name="name" type="text" class="input" placeholder="search..." required/>
         <button type="submit" value="submit">Search</button>
         <button type="reset">clear</button>
     </form>
-</form>
+</div>
 
     <div class="container">
         <div class="row">
@@ -72,7 +74,7 @@
             <th>Instructions</th>
             <th>Prep Time</th>
             <th>Cook Time</th>
-            <th></th>
+            <th>View</th>
         </tr>
         </thead>
         <tbody>
