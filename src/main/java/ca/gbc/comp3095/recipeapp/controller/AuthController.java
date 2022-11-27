@@ -105,11 +105,9 @@ public class AuthController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());
 
+        recipeRepository.save(new Recipe(recipe.getName(), recipe.getInstructions(),
+                recipe.getIngredients(), recipe.getPrepTime(), recipe.getCookTime(), user));
 
-        recipeRepository.save(recipe);
-
-        user.addRecipe(recipe);
-        userRepository.save(user);
         return "redirect:/recipes";
     }
 
@@ -120,6 +118,7 @@ public class AuthController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());
         user.addRecipe(recipe);
+        //recipeRepository.save(recipe);
         model.put("recipe", recipe);
         return VIEWS_RECIPES_CREATE_OR_UPDATE_FORM;
     }

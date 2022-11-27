@@ -18,6 +18,7 @@ import org.springframework.core.style.ToStringCreator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -53,19 +54,17 @@ public class User
     private List<Role> roles = new ArrayList<>();
 
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName="ID")
-    @OrderBy("name")
-    private List<Recipe> recipes = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Recipe> recipes;
 
-    public List<Recipe> getRecipes() {
+    public Set<Recipe> getRecipes() {
         return this.recipes;
     }
 
     public void addRecipe(Recipe recipe){
-        if(recipe.isNew()){
+        //if(recipe.isNew()){
             getRecipes().add(recipe);
-        }
+        //}
     }
 
 

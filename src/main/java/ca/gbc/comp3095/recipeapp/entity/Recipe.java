@@ -34,6 +34,30 @@ public class Recipe {
     @Column(name = "cook_time")
     private Long cookTime;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public Recipe() { }
+
+    public Recipe(String name, String instructions, String ingredients,
+                  Long prepTime, Long cookTime, User user) {
+        this.name = name;
+        this.instructions = instructions;
+        this.ingredients = ingredients;
+        this.prepTime = prepTime;
+        this.cookTime = cookTime;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     public Integer getId() {
         return id;

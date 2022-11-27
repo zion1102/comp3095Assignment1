@@ -7,15 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="comp3095_assignment1-master" />
         <module name="registration-login-demo" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="comp3095_assignment1-master" options="-parameters" />
-      <module name="registration-login-demo" options="-parameters" />
+      <module name="registration-login-demo" options="-parameters --add-modules java.base" />
     </option>
   </component>
 </project>

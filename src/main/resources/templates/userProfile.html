@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>My Recipe App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/recipes}">My Recipe App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+<br />
+<br />
+</body>
+<body>
+<div  class="container">
+
+    <div class="col-xs-8 col-md-8" th:object="${user}">
+
+        <h2 th:text="${user.firstName} +' ' +${user.lastName}"></h2>
+        <dl class="list">
+            <dt>Email</dt>
+            <dd th:text="${user.Email}"></dd>
+            <dt>Id</dt>
+            <dd th:text="${user.id}"></dd>
+        </dl>
+    </div>
+
+    <div class="container">
+        <label>Search recipe name:</label>
+        <form class="form" th:action="@{recipes/search}">
+            <input id="name" name="name" type="text" class="input" placeholder="search..." required/>
+            <button type="submit" value="submit">Search</button>
+            <button type="reset">clear</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <h1> My Recipes </h1>
+        </div>
+
+        <table class="table table-striped table-bordered table-hover" >
+            <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Ingredients</th>
+                <th>Instructions</th>
+                <th>Prep Time</th>
+                <th>Cook Time</th>
+                <th>View</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="recipe: ${user.recipes}" >
+                <td th:text="${recipe.name}"></td>
+                <td th:text="${recipe.ingredients}"></td>
+                <td th:text="${recipe.instructions}"></td>
+                <td th:text="${recipe.prepTime}"></td>
+                <td th:text="${recipe.cookTime}"></td>
+                <td> <a th:href="@{'/recipes/show/' + ${recipe.id}}" class="btn btn-primary">View</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
